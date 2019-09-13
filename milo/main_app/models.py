@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User 
 
 # Create your models here.
 EXERCISES = (
@@ -15,6 +16,7 @@ class Profile(models.Model):
     picture = models.CharField(max_length=100)
     sport_bio = models.TextField(max_length=250)
     goal = models.CharField(max_length=150)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.name
@@ -33,9 +35,11 @@ class Activity(models.Model):
     reps = models.IntegerField()
     # running for reps will be miles ran
     date = models.DateField()
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
 
 
 class Calories(models.Model):
     calories_in = models.IntegerField()
     calories_out = models.IntegerField()
     date = models.DateField()
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
