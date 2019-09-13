@@ -11,3 +11,7 @@ def home(request):
 
 def profile(request):
     return render(request, 'profile.html')    
+
+
+
+# Need to add step 8 in authentication to the prfile create view
