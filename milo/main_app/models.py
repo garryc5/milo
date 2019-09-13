@@ -1,3 +1,41 @@
 from django.db import models
 
 # Create your models here.
+EXERCISES = (
+    ('R', 'Running'),
+    ('A', 'Arms'),
+    ('L', 'Legs'),
+    ('C', 'Core'),
+)
+
+
+class Profile(models.Model):
+    name = models.CharField(max_length=100)
+    dob = models.DateField('date of birth')
+    picture = models.CharField(max_length=100)
+    sport_bio = models.TextField(max_length=250)
+    goal = models.CharField(max_length=150)
+
+    def __str__(self):
+        return self.name
+
+    # def get_absolute_url(self):
+    # return reverse('detail', kwargs={'cat_id': self.id})
+
+
+class Activity(models.Model):
+    activity = models.CharField(
+        max_length=1,
+        choices=EXERCISES,
+        default=EXERCISES[0][0]
+    )
+    weight = models.IntegerField()
+    reps = models.IntegerField()
+    # running for reps will be miles ran
+    date = models.DateField()
+
+
+class Calories(models.Model):
+    calories_in = models.IntegerField()
+    calories_out = models.IntegerField()
+    date = models.DateField()
