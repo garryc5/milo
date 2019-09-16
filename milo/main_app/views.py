@@ -1,8 +1,11 @@
 from django.shortcuts import render, HttpResponse, redirect
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
+
+#login imports
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
+
 from bs4 import BeautifulSoup
 import requests
 
@@ -18,7 +21,7 @@ def profile(request):
 
 
 def signup(request):
-  error_message = ''
+      error_message = ''
   if request.method == 'POST':
     form = UserCreationForm(request.POST)
     if form.is_valid():
