@@ -5,14 +5,8 @@ from django.contrib.auth.forms import UserCreationForm
 #login imports
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
-
-#imports to upload pics
-import uuid
-import boto3
-from .models import Profile, Photo
-
-S3_BASE_URL = 'https://s3.us-east-2.amazonaws.com'
-BUCKET= 'miloprofilepics'
+from bs4 import BeautifulSoup
+import requests
 
 
 # Create your views here.
@@ -41,21 +35,25 @@ def signup(request):
       return redirect('profile')
     else:
       error_message = 'Invalid sign up - try again'
-  # A bad POST or a GET request, so render signup.html with an empty form
-  form = UserCreationForm()
-  context = {'form': form, 'error_message': error_message}
-  return render(request, 'registration/signup.html', context)
+    form = UserCreationForm()
+    context = {'form': form, 'error_message': error_message}
+    return render(request, 'registration/signup.html', context)
 
-def add_photo(request,profile_id):
-    photo_file = request.FILES.get('photo-file',None)
-    if photo_file:
-        s3 = boto3.client('s3')
-        key = uuid.uuid4().hex[:6] + photo_file.name[photo_file.name.rfind('.'):]
-        try:
-            s3.upload_fileobj(photo_file, BUCKET, key)
-            url = f"{S3_BASE_URL}{BUCKET}/{key}"
-            photo = Photo(url=url, profile_id=profile_id)
-            photo.save()
-        except:
-            print('An error occurred uploading file to S3')
-    return redirect('detail', profile_id=profile_id)
+
+
+
+def webscrapper():
+  url = "https://www.ideafit.com/fitness-library"
+  response = requests.get(url , timeout=5)
+  content = BeautifulSoup(response.content, "html.parser")
+  grabbedfeed = content.find_all("div", attrs={"class": "box white article teaser large wide nopad has-image clearfix"})
+  toReturn = []
+  for x in range(6):
+    artical = {
+        'img' : grabbedfeed[x].img,
+        'link' : url + grabbedfeed[x].h3.a.get('href'),
+        'headline' : grabbedfeed[x].h3.text,
+        'discript' : grabbedfeed[x].p
+    }
+    toReturn.append(artical)
+  return toReturn
