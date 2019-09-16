@@ -18,7 +18,7 @@ def home(request):
     return render(request, 'home.html')
 
 def profile(request):
-  prof = Profile.objects.get(user_id = request.user.id)
+  prof = 
   return render(request, 'profile.html',{profile : prof} )    
 
 
