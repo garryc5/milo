@@ -1,11 +1,13 @@
 from django.shortcuts import render, HttpResponse, redirect
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
-
+from django.views.generic.edit import CreateView
 #login imports
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
+
 from .models import Profile
+
 from bs4 import BeautifulSoup
 import requests
 
@@ -55,3 +57,8 @@ def webscrapper():
     }
     toReturn.append(artical)
   return toReturn
+
+class ProfileCreate(CreateView):
+  model = Profile
+  fields = '__all__'
+  success_url='/profile/'
