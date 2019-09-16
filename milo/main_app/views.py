@@ -62,14 +62,6 @@ class ProfileCreate(CreateView):
   model = Profile
   fields = ['name','dob','picture','sport_bio','goal']
   success_url='/profile/'
-<<<<<<< HEAD
-
   def form_valid(self, form):
-    # Assign the logged in user
-=======
-  def form_valid(self, form):
-        # Assign the logged in user
->>>>>>> 47f3579bdaaed948dfe1bc1dc487d4c6b18ca2c1
     form.instance.user = self.request.user
-    # Let the CreateView do its job as usual
     return super().form_valid(form)

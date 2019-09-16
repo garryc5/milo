@@ -24,19 +24,11 @@
                 <ul class="right">
                   {% if user.is_authenticated %}
                    <li><a href="{% url 'logout' %}">Log Out</a></li>
-<<<<<<< HEAD
                    <li><a href="{% url 'profile' %}">Profile</a></li>
                    <li><a href="{% url 'profile_create' %}"> Create Profile</a></li>
-                   
                    {% else %}
-=======
-                    <li><a href="{% url 'profile_create' %}"> Create Profile</a></li>
-                    <li><a href="{% url 'profile' %}">Profile</a></li>
-                  {% else %}
->>>>>>> 47f3579bdaaed948dfe1bc1dc487d4c6b18ca2c1
                     <li><a href="{% url 'signup' %}">Sign Up</a></li>
                     <li><a href="{% url 'login' %}">Log In</a></li>
-                    
                   {% endif %} 
                 </ul>
             </div>
