@@ -5,7 +5,7 @@ from django.contrib.auth.forms import UserCreationForm
 #login imports
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
-
+from .models import Profile
 from bs4 import BeautifulSoup
 import requests
 
@@ -16,12 +16,16 @@ def home(request):
     return render(request, 'home.html')
 
 def profile(request):
-    return render(request, 'profile.html')    
+    return render(request, 'profile.html',
+    {
+      'profile' : profile,
+    }
+    )    
 
 
 
 def signup(request):
-  error_message = ''
+  cerror_message = ''
   if request.method == 'POST':
     form = UserCreationForm(request.POST)
     if form.is_valid():
