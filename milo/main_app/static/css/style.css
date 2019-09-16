@@ -1,14 +1,29 @@
+header {
+    font-family: 'Saira Stencil One', cursive;
+}
+
 body {
+    font-family: 'Quicksand', sans-serif;
     display: flex;
     min-height: 100vh;
     flex-direction: column;
   }
   
-  main {
+main {
     flex: 1 0 auto;
   }
+
+h5 {
+    font-family: 'Niconne', cursive;
+}
+
+.row {
+    display: flex;
+    min-height: 65vh;
+    padding: 10px;
+}  
   
-  footer.page-footer {
+footer.page-footer {
     padding-top: 0;
     text-align: center;
   }
