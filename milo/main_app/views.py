@@ -18,7 +18,7 @@ def home(request):
 def profile(request):
     return render(request, 'profile.html',
     {
-      'profile' : profile,
+      'profile' : Profile,
     }
     )    
 
