@@ -54,8 +54,8 @@ def add_photo(request,profile_id):
         try:
             s3.upload_fileobj(photo_file, BUCKET, key)
             url = f"{S3_BASE_URL}{BUCKET}/{key}"
-            photo = Photo(url=url, cat_id=profile_id)
+            photo = Photo(url=url, profile_id=profile_id)
             photo.save()
         except:
             print('An error occurred uploading file to S3')
-    return redirect('detail', cat_id=profile_id)
+    return redirect('detail', profile_id=profile_id)
