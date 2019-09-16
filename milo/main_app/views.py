@@ -5,6 +5,7 @@ from django.contrib.auth.forms import UserCreationForm
 #login imports
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
+
 from bs4 import BeautifulSoup
 import requests
 
