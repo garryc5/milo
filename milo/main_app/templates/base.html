@@ -11,7 +11,7 @@
     <link href="https://fonts.googleapis.com/css?family=Quicksand&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Niconne&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/moblie.css' %}">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 </head>
 <body>
@@ -24,7 +24,9 @@
                 <ul class="right">
                   {% if user.is_authenticated %}
                    <li><a href="{% url 'logout' %}">Log Out</a></li>
-                  {% else %}
+                   <li><a href="{% url 'profile' %}">Profile</a></li>
+                   <li><a href="{% url 'profile_create' %}"> Create Profile</a></li>
+                   {% else %}
                     <li><a href="{% url 'signup' %}">Sign Up</a></li>
                     <li><a href="{% url 'login' %}">Log In</a></li>
                   {% endif %} 

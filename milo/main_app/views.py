@@ -1,11 +1,13 @@
 from django.shortcuts import render, HttpResponse, redirect
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
-
+from django.views.generic.edit import CreateView
 #login imports
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
+
 from .models import Profile
+
 from bs4 import BeautifulSoup
 import requests
 
@@ -16,6 +18,7 @@ def home(request):
     return render(request, 'home.html')
 
 def profile(request):
+    profile=Profile.objects.get(user_id = request.user.id)
     return render(request, 'profile.html',
     {
       'profile' : profile,
@@ -31,7 +34,7 @@ def signup(request):
     if form.is_valid():
       user = form.save()
       login(request, user)
-      return redirect('profile')
+      return redirect('../profile/create')
     else:
       error_message = 'Invalid sign up - try again'
   form = UserCreationForm()
@@ -55,3 +58,11 @@ def webscrapper():
     }
     toReturn.append(artical)
   return toReturn
+
+class ProfileCreate(CreateView):
+  model = Profile
+  fields = ['name','dob','picture','sport_bio','goal']
+  success_url='/profile/'
+  def form_valid(self, form):
+    form.instance.user = self.request.user
+    return super().form_valid(form)
