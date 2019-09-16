@@ -36,7 +36,7 @@ def signup(request):
 
 
 
-def webscrapper()
+def webscrapper():
   url = "https://www.ideafit.com/fitness-library"
   response = requests.get(url , timeout=5)
   content = BeautifulSoup(response.content, "html.parser")
