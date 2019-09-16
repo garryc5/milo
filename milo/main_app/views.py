@@ -3,7 +3,8 @@ from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
-
+from bs4 import BeautifulSoup
+import requests
 
 
 # Create your views here.
@@ -31,3 +32,22 @@ def signup(request):
     form = UserCreationForm()
     context = {'form': form, 'error_message': error_message}
     return render(request, 'registration/signup.html', context)
+
+
+
+
+def webscrapper()
+  url = "https://www.ideafit.com/fitness-library"
+  response = requests.get(url , timeout=5)
+  content = BeautifulSoup(response.content, "html.parser")
+  grabbedfeed = content.find_all("div", attrs={"class": "box white article teaser large wide nopad has-image clearfix"})
+  toReturn = []
+  for x in range(6):
+    artical = {
+        'img' : grabbedfeed[x].img,
+        'link' : url + grabbedfeed[x].h3.a.get('href'),
+        'headline' : grabbedfeed[x].h3.text,
+        'discript' : grabbedfeed[x].p
+    }
+    toReturn.append(artical)
+  return toReturn

@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block content %}
+{%for article in toReturn: %}
+    <div>
+        {{article.img}}
+        <h3>{{article.headline}}</h3>
+        {{article.discript}}
+        <a href={{article.link}}>click here for more</a>
+    </div>
+    {% end for %}
+{% endblock %}
