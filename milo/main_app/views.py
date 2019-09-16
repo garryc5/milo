@@ -18,11 +18,8 @@ def home(request):
     return render(request, 'home.html')
 
 def profile(request):
-    return render(request, 'profile.html',
-    {
-      'profile' : Profile,
-    }
-    )    
+  prof = Profile.objects.get(user_id = request.user.id)
+  return render(request, 'profile.html',{profile : prof} )    
 
 
 
