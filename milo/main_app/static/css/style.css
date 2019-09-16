@@ -1,3 +1,4 @@
+
 * {
     padding: 0;
 }
@@ -43,7 +44,6 @@ footer.page-footer {
     padding-top: 0;
     text-align: center;
   }
-
   @media only screen and (max-width: 600px)
   {
   .row{
@@ -61,4 +61,4 @@ footer.page-footer {
       flex:0 0 100vw;
       scroll-snap-align: start;
     }
-  }   
+  } 
