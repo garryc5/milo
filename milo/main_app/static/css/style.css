@@ -1,3 +1,7 @@
+* {
+    padding: 0;
+}
+
 header {
     font-family: 'Saira Stencil One', cursive;
 }
@@ -7,23 +11,54 @@ body {
     display: flex;
     min-height: 100vh;
     flex-direction: column;
+    color: darkslategrey;
   }
   
 main {
     flex: 1 0 auto;
   }
 
-h5 {
+h5, h6 {
     font-family: 'Niconne', cursive;
+}
+
+#container {
+  position: relative;
+  text-align: center;
+  color: darkslategrey;
 }
 
 .row {
     display: flex;
     min-height: 65vh;
-    padding: 10px;
-}  
+} 
+
+.top-left {
+    position: absolute;
+    top: 70%;
+    left: 15%;
+  }
   
 footer.page-footer {
     padding-top: 0;
     text-align: center;
   }
+
+  @media only screen and (max-width: 600px)
+  {
+  .row{
+      overflow-y: scroll;
+      scroll-snap-coordinate: 0 0;
+      scroll-snap-points-x: repeat(100%);
+      scroll-snap-type: x mandatory;
+      flex: 1;
+      display:flex;
+      -webkit-overflow-scrolling: touch;
+    }
+    
+    .row .col {
+      height: 97vh;
+      flex:0 0 100vw;
+      scroll-snap-align: start;
+    }
+  }   
