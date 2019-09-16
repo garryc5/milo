@@ -33,7 +33,7 @@ def signup(request):
     if form.is_valid():
       user = form.save()
       login(request, user)
-      return redirect('profile')
+      return redirect('../profile/create')
     else:
       error_message = 'Invalid sign up - try again'
   form = UserCreationForm()
@@ -60,5 +60,10 @@ def webscrapper():
 
 class ProfileCreate(CreateView):
   model = Profile
-  fields = '__all__'
+  fields = ['name','dob','picture','sport_bio','goal']
   success_url='/profile/'
+  def form_valid(self, form):
+        # Assign the logged in user
+    form.instance.user = self.request.user
+    # Let the CreateView do its job as usual
+    return super().form_valid(form)
