@@ -15,7 +15,11 @@ import requests
 # Create your views here.
 
 def home(request):
-    return render(request, 'home.html')
+    toReturn = webscrapper()
+    return render(request, 'home.html',
+    {
+      'toReturn': toReturn
+    })
 
 def profile(request):
     profile=Profile.objects.get(user_id = request.user.id)
@@ -51,10 +55,10 @@ def webscrapper():
   toReturn = []
   for x in range(6):
     artical = {
-        'img' : grabbedfeed[x].img,
+        'img' : grabbedfeed[x].img.get("src"),
         'link' : url + grabbedfeed[x].h3.a.get('href'),
         'headline' : grabbedfeed[x].h3.text,
-        'discript' : grabbedfeed[x].p
+        'discript' : grabbedfeed[x].p.text
     }
     toReturn.append(artical)
   return toReturn

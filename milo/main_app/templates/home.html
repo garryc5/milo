@@ -3,8 +3,14 @@
 
 <div class="row">
     <div class="col s4 center-align">
-        <h1>Member of the Month:</h1>
-        <h5>"A mountain lion attacked me off paradise trail, with the help of the Milo app, I was prepared, wrestled, subdued and put the lion to sleep with my bare hands."</h5>
+      {%for article in toReturn %}
+    <div>
+        <img src="{{ article.img }}" id="new_feed_img">
+        <h3>{{article.headline}}</h3>
+        <p>{{ article.discript }}</p>
+        <a href={{article.link}}>click here for more</a>
+    </div>
+    {% endfor %}  
     </div>
     <div id="container" class="col s4 center-align">
       swipe!
