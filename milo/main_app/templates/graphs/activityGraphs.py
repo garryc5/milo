@@ -9,7 +9,7 @@ datea = []
 datel = []
 datec = []
 
-for act in User.Profile.Activity:
+for act in User.Activity:
     if  act.activity = 'r':
         run.append(act.rep)
         dater.append(act.date)
@@ -22,9 +22,10 @@ for act in User.Profile.Activity:
     elif act.activity = 'a':
         arms.append(act.rep)
         datea.append(act.date)
-
-
-plt.plot(dater,run)
+ 
+plt.plot(dater,run,'ro',datea,arms,'bo',datec,core,'go',datel,legs,'yo')
 plt.ylabel('Reps / Distance')
 plt.xlabel('Date')
+# VVVV returns html;
+plt.show()
 
