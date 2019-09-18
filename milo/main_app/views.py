@@ -88,7 +88,7 @@ class ProfileUpdate(UpdateView):
 
 class ActivityCreate(CreateView):
     model = Activity
-    fields = '__all__'
+    fields = ['activity', 'weight', 'reps', 'date']
     success_url = '/profile/'
 
 
