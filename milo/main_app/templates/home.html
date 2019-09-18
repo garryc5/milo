@@ -4,19 +4,21 @@
 <div class="row">
     <div class="col s4 center-align">
       {%for article in toReturn %}
-    <div>
+    <div class="article">
         <img src="{{ article.img }}" id="new_feed_img">
         <h3>{{article.headline}}</h3>
-        <p>{{ article.discript }}</p>
-        <a href={{article.link}}>click here for more</a>
+        <h5>{{ article.discript }}</h5>
+        <a href={{article.link}} target="_blank">Read Article >></a>
     </div>
+    <hr>
+
     {% endfor %}  
     </div>
     <div id="container" class="col s4 center-align">
       swipe!
     </div>
     <div id="container" class="col s4 center-align">
-        <div class="top-left"><h4>“You must expect great things of yourself before you can do them.”</h4></div>
+        <div class="top-left"><h5>“You must expect great things of yourself before you can do them.”</h5></div>
          <img src="static/images/lady-leap.jpg" alt="Woman leaping upwards"> 
     </div>
   </div>
