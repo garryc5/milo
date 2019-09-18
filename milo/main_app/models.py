@@ -1,5 +1,5 @@
 from django.db import models
-from django.contrib.auth.models import User 
+from django.contrib.auth.models import User
 from django.urls import reverse
 
 # Create your models here.
@@ -10,10 +10,10 @@ EXERCISES = (
     ('C', 'Core'),
 )
 
+
 class Profile(models.Model):
     name = models.CharField(max_length=100)
     dob = models.DateField('date of birth')
-    picture = models.CharField(max_length=100)
     sport_bio = models.TextField(max_length=250)
     goal = models.CharField(max_length=150)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -22,7 +22,7 @@ class Profile(models.Model):
         return self.name
 
     def get_absolute_url(self):
-     return reverse('profile')
+        return reverse('profile')
 
 
 class Activity(models.Model):
@@ -43,6 +43,8 @@ class Calories(models.Model):
     calories_out = models.IntegerField()
     date = models.DateField()
     user = models.ForeignKey(User, on_delete=models.CASCADE)
+
+
 class Photo(models.Model):
     url = models.CharField(max_length=200)
     image = models.ForeignKey(Profile, on_delete=models.CASCADE)
