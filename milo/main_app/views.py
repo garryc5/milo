@@ -6,7 +6,7 @@ from django.views.generic.edit import CreateView, UpdateView
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 
-from .models import Profile, Photo
+from .models import Profile, Photo, Activity
 from bs4 import BeautifulSoup
 import requests
 
@@ -82,8 +82,14 @@ class ProfileCreate(CreateView):
 
 class ProfileUpdate(UpdateView):
     model = Profile
-    fields = ['name', 'picture', 'sport_bio', 'goal']
+    fields = ['name', 'sport_bio', 'goal']
     sucess_url = '/profile/'
+
+
+class ActivityCreate(CreateView):
+    model = Activity
+    fields = '__all__'
+    success_url = '/profile/'
 
 
 def add_photo(request, profile_id):
