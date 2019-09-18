@@ -72,7 +72,7 @@ def webscrapper():
 
 class ProfileCreate(CreateView):
     model = Profile
-    fields = ['name', 'dob', 'picture', 'sport_bio', 'goal']
+    fields = ['name', 'dob', 'sport_bio', 'goal']
     success_url = '/profile/'
 
     def form_valid(self, form):
@@ -90,6 +90,11 @@ class ActivityCreate(CreateView):
     model = Activity
     fields = ['activity', 'weight', 'reps', 'date']
     success_url = '/profile/'
+
+
+def form_valid(self, form):
+    form.instance.user = self.request.user
+    return super().form_valid(form)
 
 
 def add_photo(request, profile_id):
