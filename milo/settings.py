@@ -69,7 +69,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'milo_app.wsgi.application'
+WSGI_APPLICATION = 'milo.wsgi.application'
 
 
 # Database

@@ -1,1 +1,1 @@
-web: gunicorn milo_app.wsgi
+web: gunicorn milo.wsgi
