@@ -12,5 +12,5 @@ urlpatterns = [
     path('accounts/signup', views.signup, name='signup'),
     path('profile/<int:profile_id>/add_photo/',
          views.add_photo, name='add_photo')
-     path('profile/a')
+    path('profile/activity/create/', view.ActivityCreate.as_view(), name='activity_create')
 ]
