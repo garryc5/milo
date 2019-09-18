@@ -12,5 +12,10 @@ urlpatterns = [
     path('accounts/signup', views.signup, name='signup'),
     path('profile/<int:profile_id>/add_photo/',
          views.add_photo, name='add_photo'),
+<<<<<<< HEAD
     path('profile/activity/create/', views.ActivityCreate.as_view(), name='activity_create')
+=======
+    path('profile/activity/create/',
+         views.ActivityCreate.as_view(), name='activity_create')
+>>>>>>> ecc4ff60eefaaef31f44a75e032215aca3129e8c
 ]
