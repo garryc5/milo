@@ -5,9 +5,6 @@ from django.views.generic.edit import CreateView, UpdateView
 # login imports
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
-
-
-
 from .models import Profile, Photo, Activity
 from bs4 import BeautifulSoup
 import requests
@@ -94,9 +91,9 @@ class ActivityCreate(CreateView):
     success_url = '/profile/'
 
 
-def form_valid(self, form):
-    form.instance.user = self.request.user
-    return super().form_valid(form)
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super().form_valid(form)
 
 
 def add_photo(request, profile_id):
@@ -120,32 +117,3 @@ def add_photo(request, profile_id):
     return redirect('/profile/')
 
 
-def graphs(activity):
-    run = []
-    arms = []
-    legs = []
-    core = []
-    dater = []
-    datea = []
-    datel = []
-    datec = []
-    lw = 0
-    cw = 0
-    aw = 0
-    for act in activity:
-        if  act.activity == 'r':
-            run.append(act.rep)
-            dater.append(act.date)
-        elif act.activity == 'l':
-            legs.append(act.rep)
-            datel.append(act.date)
-            lw += act.weight
-        elif act.activity == 'c':
-            core.append(act.rep)
-            datec.append(act.date)
-            cw += act.weight
-        elif act.activity == 'a':
-            arms.append(act.rep)
-            datea.append(act.date)
-            aw += act.weight
-    
