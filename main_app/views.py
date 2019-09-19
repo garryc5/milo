@@ -29,7 +29,7 @@ def home(request):
 
 def profile(request):
     profile = Profile.objects.get(user_id=request.user.id)
-    activity = Activity.objects.filter(user_id=request.user.id)
+    activity =  activityParce(Activity.objects.filter(user_id=request.user.id))
     return render(request, 'profile.html',
                   {
                       'profile': profile,
@@ -122,3 +122,43 @@ def add_photo(request, profile_id):
         except:
             print('An error occurred uploading file to S3')
     return redirect('/profile/')
+
+def activityParce(Activity):
+    run = ''
+    arms = ''
+    legs = ''
+    core = ''
+    dater = ''
+    datea = ''
+    datel = ''
+    datec = ''
+    lw = 0
+    cw = 0
+    aw = 0
+    for act in Activity:
+        if  act.activity == 'r':
+            run += f"Distance:  {act.rep}  "
+            dater += f"Date:  {act.date}  "
+        elif act.activity =='l':
+            legs += f"Reps:  {act.rep}  "
+            datel += f"Date:  {act.date}  "
+            lw += act.weight
+        elif act.activity == 'c':
+            core += f"Reps:  {act.rep}  "
+            datec += f"Date:  {act.date}  "
+            cw += act.weight
+        elif act.activity == 'a':
+            arms += f"Reps:  {act.rep}  "
+            datea += f"Date:  {act.date}  "
+            aw += act.weight
+    
+    return   {'run' : run,
+        'runDates':dater,
+        'legs': legs,
+        'legDates':datel,
+        'arms': arms,
+        'armDates':datea,
+        'core': core,
+        'coreDates':datec,
+        'weights' : f"arms:{aw}   legs:{lw}   core:{cw}"
+        }
