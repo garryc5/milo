@@ -11,7 +11,6 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 
-
 # photo import
 
 S3_BASE_URL = 'https://s3.us-east-2.amazonaws.com'
