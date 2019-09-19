@@ -30,11 +30,11 @@ def home(request):
 
 def profile(request):
     profile = Profile.objects.get(user_id=request.user.id)
-    activity = Activity.objects.filter(user_id=request.user.id)
+    activity =  activityParce(Activity.objects.filter(user_id=request.user.id))
     return render(request, 'profile.html',
                   {
                       'profile': profile,
-                      'activity': activityParce(activity)
+                      'activity': activity
                   }
                   )
 
@@ -124,7 +124,7 @@ def add_photo(request, profile_id):
             print('An error occurred uploading file to S3')
     return redirect('/profile/')
 
-def activityParce(Activity)
+def activityParce(Activity):
     run = ''
     arms = ''
     legs = ''
@@ -153,9 +153,7 @@ def activityParce(Activity)
             datea += f"Date:  {act.date}  "
             aw += act.weight
     
-    return 
-        {
-        'run' : run,
+    return   {'run' : run,
         'runDates':dater,
         'legs': legs,
         'legDates':datel,
