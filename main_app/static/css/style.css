@@ -19,6 +19,11 @@ img {
   max-width: 33vw;
 }
 
+.sax {
+  margin: 20px;
+  max-width: 90%;
+}
+
 h6 {
     font-family: 'Niconne', cursive;
 }
@@ -51,6 +56,11 @@ hr {
 } 
 
 footer.page-footer {
+    width: 100%;
+    height: 3vh;
+    position: fixed;
+    top: 97vh;
+    z-index: 22;
     padding-top: 0;
     text-align: center;
   }

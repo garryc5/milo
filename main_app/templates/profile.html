@@ -4,79 +4,47 @@
 
 <div class="row">
   <aside class="card panel col s3 #80cbc4 teal lighten-3 hoverable">
+    <img class="sax" src="../static/images/sweetsax.jpg" alt="profile sax"> 
     <h2>{{ profile.sport_bio }}</h2>
     <h5>{{ profile.dob }}</h5>
     <p>{{ profile.goal }}</p>
+        <div class="card-action">
+           <a href="{% url 'profile_update' profile.id %}">Edit</a>
+         </div> 
  </aside>
   
   <div class="col s9">
     <h2 class="center-align">{{profile.name}}'s Profile</h2>
     <a href="{% url 'activity_create' %}">Add WorkOut</a>
   
-<div>
+<div id="apple">
     <h3>Running</h3>
   <div>
+    <p>{{ activity.runDates }}</p>
         <p>{{ activity.run }}</p>
-        <p>{{ activity.runDates }}</p>
   </div>
   <h3>Arms</h3>
   <div>
+    <p>{{ activity.armDates }}</p>
       <p>{{ activity.arms }}</p>
-      <p>{{ activity.armDates }}</p>
   </div>
   <h3>Legs</h3>
   <div>
-    <p>{{ activity.legs }}</p>
     <p>{{ activity.legDates }}</p>
+    <p>{{ activity.legs }}</p>
   </div>
   <h3>Core</h3>
   <div>
-    <p>{{ activity.core }}</p>
     <p>{{ activity.coreDates }}</p>
+    <p>{{ activity.core }}</p>
   </div>
   <h3>Avg weights</h3>
   <h4>{{activity.weights}}</h4>
 </div>
 
-
-
+ 
 </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-{% comment %} {% for photo in profile.photo_set.all %}
-      <img class="responsive-img card-panel" src="{{photo.url}}">
-    {% empty %}
-      <div class="card-panel teal-text center-align">No Photos Uploaded</div>
-    {% endfor %}
-
-    <form action="{% url 'add_photo' profile.id %}" enctype="multipart/form-data" method="POST" class="card-panel">
-    {% csrf_token %}
-    <input type="file" name="photo-file">
-    <br><br>
-    <input type="submit" class="btn" value="Upload Photo">
-</form>  {% endcomment %}
-{% comment %} Edit Profile {% endcomment %}
- <div class="card-action">
-    <a href="{% url 'profile_update' profile.id %}">Edit</a>
-  </div> 
 {% endblock %}
+
+
