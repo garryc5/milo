@@ -1,3 +1,8 @@
+import boto3
+import uuid
+import requests
+from bs4 import BeautifulSoup
+from .models import Profile, Photo, Activity
 from django.shortcuts import render, HttpResponse, redirect
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
@@ -5,15 +10,9 @@ from django.views.generic.edit import CreateView, UpdateView
 # login imports
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
-import matplotlib.pyplot as plt, mpld3
-from mpld3 import fig_to_html, plugins
-from .models import Profile, Photo, Activity
-from bs4 import BeautifulSoup
-import requests
+
 
 # photo import
-import uuid
-import boto3
 
 S3_BASE_URL = 'https://s3.us-east-2.amazonaws.com'
 BUCKET = 'miloprofilepics'
@@ -31,9 +30,11 @@ def home(request):
 
 def profile(request):
     profile = Profile.objects.get(user_id=request.user.id)
+    activity = Activity.objects.filter(user_id=request.user.id)
     return render(request, 'profile.html',
                   {
                       'profile': profile,
+                      'activity': activity
                   }
                   )
 
@@ -92,7 +93,6 @@ class ActivityCreate(CreateView):
     fields = ['activity', 'weight', 'reps', 'date']
     success_url = '/profile/'
 
-
     def form_valid(self, form):
         form.instance.user = self.request.user
         return super().form_valid(form)
@@ -117,5 +117,3 @@ def add_photo(request, profile_id):
         except:
             print('An error occurred uploading file to S3')
     return redirect('/profile/')
-
-
