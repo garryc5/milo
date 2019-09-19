@@ -50,13 +50,6 @@ hr {
     min-height: 65vh;
 } 
 
-.top-left {
-    position: absolute;
-    top: 60%;
-    left: 5%;
-    align-items: center;
-  }
-  
 footer.page-footer {
     padding-top: 0;
     text-align: center;
