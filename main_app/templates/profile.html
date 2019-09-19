@@ -12,7 +12,34 @@
   <div class="col s9">
     <h2 class="center-align">{{profile.name}}'s Profile</h2>
     <a href="{% url 'activity_create' %}">Add WorkOut</a>
+  
+<div>
+    <h3>Running</h3>
+  <div>
+        <p>{{ activity.run }}</p>
+        <p>{{ activity.runDates }}</p>
   </div>
+  <h3>Arms</h3>
+  <div>
+      <p>{{ activity.arms }}</p>
+      <p>{{ activity.armDates }}</p>
+  </div>
+  <h3>Legs</h3>
+  <div>
+    <p>{{ activity.legs }}</p>
+    <p>{{ activity.legDates }}</p>
+  </div>
+  <h3>Core</h3>
+  <div>
+    <p>{{ activity.core }}</p>
+    <p>{{ activity.coreDates }}</p>
+  </div>
+  <h3>Avg weights</h3>
+  <h4>{{activity.weights}}</h4>
+</div>
+
+
+
 </div>
 
 

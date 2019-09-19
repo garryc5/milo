@@ -30,6 +30,7 @@ def home(request):
 def profile(request):
     profile = Profile.objects.get(user_id=request.user.id)
     activity =  activityParce(Activity.objects.filter(user_id=request.user.id))
+    print(activity)
     return render(request, 'profile.html',
                   {
                       'profile': profile,
@@ -63,7 +64,7 @@ def webscrapper():
     for x in range(6):
         artical = {
             'img': grabbedfeed[x].img.get("src"),
-            'link': url + grabbedfeed[x].h3.a.get('href'),
+            'link': url + grabbedfeed[x].h3.a.get('href')[16:],
             'headline': grabbedfeed[x].h3.text,
             'discript': grabbedfeed[x].p.text
         }
@@ -123,7 +124,7 @@ def add_photo(request, profile_id):
             print('An error occurred uploading file to S3')
     return redirect('/profile/')
 
-def activityParce(Activity):
+def activityParce(activity):
     run = ''
     arms = ''
     legs = ''
@@ -135,21 +136,21 @@ def activityParce(Activity):
     lw = 0
     cw = 0
     aw = 0
-    for act in Activity:
-        if  act.activity == 'r':
-            run += f"Distance:  {act.rep}  "
-            dater += f"Date:  {act.date}  "
-        elif act.activity =='l':
-            legs += f"Reps:  {act.rep}  "
-            datel += f"Date:  {act.date}  "
+    for act in activity:
+        if  act.activity == 'R':
+            run += f"Distance: {act.reps} Miles \n"
+            dater += f"Date:      {act.date}    \n"
+        elif act.activity =='L':
+            legs += f"Reps:  {act.reps}  \n"
+            datel += f"Date:  {act.date}  \n"
             lw += act.weight
-        elif act.activity == 'c':
-            core += f"Reps:  {act.rep}  "
-            datec += f"Date:  {act.date}  "
+        elif act.activity == 'C':
+            core += f"Reps:  {act.reps}  \n"
+            datec += f"Date:  {act.date}  \n"
             cw += act.weight
-        elif act.activity == 'a':
-            arms += f"Reps:  {act.rep}  "
-            datea += f"Date:  {act.date}  "
+        elif act.activity == 'A':
+            arms += f"Reps:  {act.reps}  \n"
+            datea += f"Date:  {act.date}  \n"
             aw += act.weight
     
     return   {'run' : run,
