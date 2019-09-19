@@ -6,7 +6,7 @@ from .models import Profile, Photo, Activity
 from django.shortcuts import render, HttpResponse, redirect
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
-from django.views.generic.edit import CreateView, UpdateView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 # login imports
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -96,6 +96,12 @@ class ActivityCreate(CreateView):
     def form_valid(self, form):
         form.instance.user = self.request.user
         return super().form_valid(form)
+
+
+class ActivityDelete(DeleteView):
+    model = Activity
+    fields = ['activity', 'weight', 'reps', 'date']
+    success_url = '/profile/'
 
 
 def add_photo(request, profile_id):
