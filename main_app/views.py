@@ -2,7 +2,7 @@ import boto3
 import uuid
 import requests
 from bs4 import BeautifulSoup
-from .models import Profile, Photo, Activity
+from .models import Profile, Photo, Activity, User
 from django.shortcuts import render, HttpResponse, redirect
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
@@ -98,10 +98,9 @@ class ActivityCreate(CreateView):
         return super().form_valid(form)
 
 
-class ActivityDelete(DeleteView):
-    model = Activity
-    fields = ['activity', 'weight', 'reps', 'date']
-    success_url = '/profile/'
+class UserDelete(DeleteView):
+    model = User
+    success_url = '/'
 
 
 def add_photo(request, profile_id):
