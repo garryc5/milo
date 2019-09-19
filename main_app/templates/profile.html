@@ -11,6 +11,8 @@
     <h2 class="center-align">{{profile.name}}'s Profile</h2>
     <a href="{% url 'activity_create' %}">Add WorkOut</a>
   </div>
+  {%print(graphobj.graph)%}
+  {%endblock%}
 </div>
 
 

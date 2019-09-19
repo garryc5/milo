@@ -32,7 +32,7 @@ def home(request):
 
 def profile(request):
     profile = Profile.objects.get(user_id=request.user.id)
-    graphobj = graphs(Profile.objects.get(user_id=request.user.id).activity)
+    graphobj = graphs(Activity.objects.filter(user_id=request.user.id))
     return render(request, 'profile.html',
                   {
                       'profile': profile,
@@ -135,18 +135,18 @@ def graphs(activity):
     cw = 0
     aw = 0
     for act in activity:
-        if  act.activity = 'r':
+        if  act.activity == 'r':
             run.append(act.rep)
             dater.append(act.date)
-        elif act.activity = 'l':
+        elif act.activity == 'l':
             legs.append(act.rep)
             datel.append(act.date)
             lw += act.weight
-        elif act.activity = 'c':
+        elif act.activity == 'c':
             core.append(act.rep)
             datec.append(act.date)
             cw += act.weight
-        elif act.activity = 'a':
+        elif act.activity == 'a':
             arms.append(act.rep)
             datea.append(act.date)
             aw += act.weight
@@ -154,9 +154,6 @@ def graphs(activity):
     plt.plot(dater,run,'ro',datea,arms,'bo',datec,core,'go',datel,legs,'yo')
     plt.ylabel('Reps / Distance')
     plt.xlabel('Date')
-    console.log(plt.show());
-    return 
-        {
-        graph :plt.show()
-        weights = f"arms:{aw}   legs:{lw}   core:{cw}"
+    return {'graph' :plt,
+        'weights' : f"arms:{aw}   legs:{lw}   core:{cw}"
         }
