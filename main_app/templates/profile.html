@@ -4,15 +4,16 @@
 
 <div class="row">
   <aside class="card panel col s3 #80cbc4 teal lighten-3 hoverable">
-      <p>image/info here</p>
+    <h2>{{ profile.sport_bio }}</h2>
+    <h5>{{ profile.dob }}</h5>
+    <p>{{ profile.goal }}</p>
  </aside>
   
   <div class="col s9">
     <h2 class="center-align">{{profile.name}}'s Profile</h2>
     <a href="{% url 'activity_create' %}">Add WorkOut</a>
   </div>
-  {%print(graphobj.graph)%}
-  {%endblock%}
+
 </div>
 
 

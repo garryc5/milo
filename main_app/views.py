@@ -6,7 +6,7 @@ from django.views.generic.edit import CreateView, UpdateView
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 
-import matplotlib.pyplot as plt
+
 
 from .models import Profile, Photo, Activity
 from bs4 import BeautifulSoup
@@ -32,11 +32,9 @@ def home(request):
 
 def profile(request):
     profile = Profile.objects.get(user_id=request.user.id)
-    graphobj = graphs(Activity.objects.filter(user_id=request.user.id))
     return render(request, 'profile.html',
                   {
                       'profile': profile,
-                      'graphobj' : graphobj
                   }
                   )
 
@@ -151,9 +149,3 @@ def graphs(activity):
             datea.append(act.date)
             aw += act.weight
     
-    plt.plot(dater,run,'ro',datea,arms,'bo',datec,core,'go',datel,legs,'yo')
-    plt.ylabel('Reps / Distance')
-    plt.xlabel('Date')
-    return {'graph' :plt,
-        'weights' : f"arms:{aw}   legs:{lw}   core:{cw}"
-        }
