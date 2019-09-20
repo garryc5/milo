@@ -21,6 +21,7 @@ img {
 
 .sax {
   margin: 20px;
+  margin-bottom: 0;
   max-width: 90%;
 }
 
@@ -38,6 +39,17 @@ hr {
   position: relative;
   text-align: center;
   color: darkslategrey;
+}
+
+#profile-name {
+  font-family: 'Saira Stencil One', cursive;    
+}
+
+#apple h3 {
+  background-color: darkgray;
+  color: white;
+  text-align: center;
+  padding-bottom: 3px;
 }
 
 .article {

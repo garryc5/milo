@@ -8,14 +8,16 @@
     <h2>{{ profile.sport_bio }}</h2>
     <h5>{{ profile.dob }}</h5>
     <p>{{ profile.goal }}</p>
-        <div class="card-action">
+        <div class="card-action page-footer #ff5722 deep-orange">
            <a href="{% url 'profile_update' profile.id %}">Edit</a>
-         </div> 
- </aside>
+        </div> 
+  </aside>
+
   
+ <div class="container">
   <div class="col s9">
-    <h2 class="center-align">{{profile.name}}'s Profile</h2>
-    <a href="{% url 'activity_create' %}">Add WorkOut</a>
+    <h2 id="profile-name" class="center-align">{{profile.name}}'s Profile</h2>
+    <a class="waves-effect waves-light btn" href="{% url 'activity_create' %}">Add WorkOut</a>
   
 <div id="apple">
     <h3>Running</h3>
@@ -41,7 +43,7 @@
   <h3>Avg weights</h3>
   <h4>{{activity.weights}}</h4>
 </div>
-
+</div>
  
 </div>
 
