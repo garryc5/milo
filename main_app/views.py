@@ -61,7 +61,7 @@ def webscrapper():
     grabbedfeed = content.find_all("div", attrs={
                                    "class": "box white article teaser large wide nopad has-image clearfix"})
     toReturn = []
-    for x in range(6):
+    for x in range(5):
         artical = {
             'img': grabbedfeed[x].img.get("src"),
             'link': url + grabbedfeed[x].h3.a.get('href')[16:],
